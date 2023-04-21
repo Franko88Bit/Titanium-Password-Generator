@@ -69,11 +69,6 @@ function generatePasswordWithUserSelections(num_of_characters, if_include_specia
   var upper_case_included = false;
   var lower_case_included = false;
   var password_in_construction = "";
-  console.log(num_of_characters);
-  console.log(if_include_special_character);
-  console.log(if_include_number);
-  console.log(if_include_upper_case);
-  console.log(if_include_lower_case);
   // came up with a simple way that satisfies the acceptance criteria
   for (let i = 0; i < num_of_characters; ++i) {
     // first generate an arbitrary character for each index for each iteration to construct the password, using 'f'
@@ -102,10 +97,12 @@ function generatePasswordWithUserSelections(num_of_characters, if_include_specia
       password_in_construction = password_in_construction + f_char;
       continue;
     }
+    // case in which user does not want any upper and lower cases
     else if (if_include_lower_case == false && if_include_upper_case == false) {
       password_in_construction = password_in_construction + "@";
       continue;
     }
+    // case in which user wants only upper case but does not want lower case
     else if (if_include_lower_case == false && if_include_upper_case == true) {
       f_char = "F";
       password_in_construction = password_in_construction + f_char;
@@ -115,14 +112,8 @@ function generatePasswordWithUserSelections(num_of_characters, if_include_specia
       password_in_construction = password_in_construction + f_char;
     }
   }
-  console.log("password constructed is");
-  console.log(password_in_construction);
   return password_in_construction;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// password needs to be length 4
-// & 3(done with special character) f(done with special character and number requirements) f
-// &3ff
