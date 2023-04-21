@@ -56,34 +56,73 @@ function generatePassword() {
       if_include_lower_case = true;
     }
   }
-  //password_to_return = generatePasswordWithUserSelections();
+  password_to_return = generatePasswordWithUserSelections(num_of_characters, if_include_special_character, if_include_number, if_include_upper_case, if_include_lower_case);
+  console.log("password to return is");
+  console.log(password_to_return);
   return password_to_return;
 }
 
 // specific, simple algorithm to generate password that satisfies user's selection, based on the 5 inputs: 1 number, 4 booleans
-/*function generatePasswordWithUserSelections(num_of_characters, if_include_special_character, if_include_number, if_include_upper_case, if_include_lower_case) {
+function generatePasswordWithUserSelections(num_of_characters, if_include_special_character, if_include_number, if_include_upper_case, if_include_lower_case) {
+  var special_character_included = false;
+  var number_included = false;
+  var upper_case_included = false;
+  var lower_case_included = false;
+  var password_in_construction = "";
+  console.log(num_of_characters);
+  console.log(if_include_special_character);
+  console.log(if_include_number);
+  console.log(if_include_upper_case);
+  console.log(if_include_lower_case);
   // came up with a simple way that satisfies the acceptance criteria
   for (let i = 0; i < num_of_characters; ++i) {
-    // first generate an arbitrary character for each index, using 'f'
+    // first generate an arbitrary character for each index for each iteration to construct the password, using 'f'
     let f_char = "f";
-    if () {
-
+    if (if_include_special_character == true && special_character_included == false) {
+      f_char = "&";
+      password_in_construction = password_in_construction + f_char;
+      special_character_included = true;
+      continue;
     }
-    else if () {
-
+    else if (if_include_number == true && number_included == false) {
+      f_char = "3";
+      password_in_construction = password_in_construction + f_char;
+      number_included = true;
+      continue;
     }
-    else if () {
-
+    else if (if_include_upper_case == true && upper_case_included == false) {
+      f_char = 'F';
+      password_in_construction = password_in_construction + f_char;
+      upper_case_included = true;
+      continue;
     }
-    else if () {
-
+    else if (if_include_lower_case == true && lower_case_included == false) {
+      // will stick to using 'f'
+      lower_case_included = true;
+      password_in_construction = password_in_construction + f_char;
+      continue;
+    }
+    else if (if_include_lower_case == false && if_include_upper_case == false) {
+      password_in_construction = password_in_construction + "@";
+      continue;
+    }
+    else if (if_include_lower_case == false && if_include_upper_case == true) {
+      f_char = "F";
+      password_in_construction = password_in_construction + f_char;
+      continue;
+    }
+    else {
+      password_in_construction = password_in_construction + f_char;
     }
   }
-}*/
+  console.log("password constructed is");
+  console.log(password_in_construction);
+  return password_in_construction;
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 // password needs to be length 4
-// _ _ _ _
-// & F f 1
+// & 3(done with special character) f(done with special character and number requirements) f
+// &3ff
